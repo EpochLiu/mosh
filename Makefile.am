@@ -8,7 +8,7 @@ include $(top_srcdir)/aminclude_static.am
 
 ACLOCAL_AMFLAGS = -I m4
 SUBDIRS = scripts src man conf
-EXTRA_DIST = autogen.sh ocb-license.html README.md COPYING.iOS
+EXTRA_DIST = autogen.sh ocb-license.html README.md COPYING.iOS ROVE.md scripts/rove-launcher.py scripts/rove-launcher-test.py scripts/rove-live-smoke.py
 BUILT_SOURCES = VERSION.stamp
 AM_DISTCHECK_CONFIGURE_FLAGS += --enable-compile-warnings=distcheck --enable-examples --enable-syslog
 

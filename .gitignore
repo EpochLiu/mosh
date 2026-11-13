@@ -1,4 +1,5 @@
 *.a
+__pycache__/
 *.o
 *.pb.cc
 *.pb.h

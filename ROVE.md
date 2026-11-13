@@ -34,3 +34,40 @@ foreground faint/reset display comparison (`emulation-attributes-faint.test`), a
 dedicated `rendition-faint` regression for SGR 2 emission, screen inequality,
 bold/faint coexistence, SGR 22/0 resets, and preservation of other attributes
 and true color. The upstream test framework uses isolated tmux servers.
+
+## Gateway installation without restarting Rove
+
+Install the gateway's native binaries in `~/.local/opt/rove-mosh/bin/` and
+install `scripts/rove-launcher.py` there as the executable `mosh`. Create
+`~/.local/opt/rove-mosh/hosts.json` containing exact target arguments, for
+example `["alice@example.test"]`. Symlink the gateway's `/usr/local/bin/mosh`
+to this launcher, and `/usr/local/bin/mosh-client` to the installed client.
+The Rove service must have `/usr/local/bin` before `/usr/bin` in its PATH.
+The distro's `/usr/bin/mosh` and packaged binaries remain intact.
+
+Install each target platform's server in that remote user's
+`~/.local/opt/rove-mosh/bin/mosh-server`. The launcher selects this path only
+for hosts in `hosts.json`. Other hosts retain the default remote server;
+explicit command-line `--client` and `--server` options take precedence.
+Remote installation does not require sudo. Replace binaries with a temporary
+file and atomic rename, rather than overwriting a running executable.
+
+Run `python3 scripts/rove-launcher-test.py` to verify host selection and
+explicit overrides. Confirm the installed binary's `--version`, shared
+library resolution, and actual dim/normal attributes over each live UDP route.
+For example, run the following from a gateway with Rove's node dependencies:
+
+```sh
+python3 scripts/rove-live-smoke.py --host alice@example.test \
+  --udp-ports 60000:60010 --ssh-port 22 \
+  --xterm-module /path/to/rove/node_modules/@xterm/headless
+```
+
+The smoke test starts a temporary Python process through Mosh, verifies dim
+and normal cells with xterm, and quits the Mosh connection cleanly. It does
+not attach to an existing tmux session.
+
+No gateway restart is required. Existing Rove connections retain their running
+Mosh processes, even after a browser refresh. Close the old connection in Rove
+and select the same tmux session again to load both new binaries. Do not kill
+the tmux session or its Claude process.
