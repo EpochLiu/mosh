@@ -34,6 +34,8 @@ foreground faint/reset display comparison (`emulation-attributes-faint.test`), a
 dedicated `rendition-faint` regression for SGR 2 emission, screen inequality,
 bold/faint coexistence, SGR 22/0 resets, and preservation of other attributes
 and true color. The upstream test framework uses isolated tmux servers.
+The duplicate upstream `window-resize.test` entry is removed so parallel test
+runs do not run two copies against the same test output directory.
 
 ## Gateway installation without restarting Rove
 

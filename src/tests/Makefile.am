@@ -37,8 +37,7 @@ displaytests = \
 	server-signal-timeout.test \
 	window-resize.test \
 	unicode-combine-fallback-assert.test \
-	unicode-later-combining.test \
-	window-resize.test
+	unicode-later-combining.test
 
 check_PROGRAMS = ocb-aes encrypt-decrypt base64 nonce-incr inpty is-utf8-locale rendition-faint
 TESTS = ocb-aes encrypt-decrypt base64 nonce-incr rendition-faint local.test $(displaytests)
