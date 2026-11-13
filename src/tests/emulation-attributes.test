@@ -120,6 +120,13 @@ baseline()
 		printf '\033[48;5;%dmM\033[m ' "$attr"
 	    done
 	    ;;
+        # Default foreground, combinations, and intensity resets used by TUIs.
+        faint)
+            printf '\033[0mNormal\033[2m Faint\033[22m Normal\n'
+            printf '\033[1;2mBold faint\033[22m Normal\n'
+            printf '\033[3;4;31;2mRed italic underlined faint\033[22m Red italic underlined\033[0m Normal\n'
+            printf '\033[2mFaint\033[0m Reset\n'
+            ;;
         # True color.
         # See https://gist.github.com/XVilka/8346728 for the test case
         truecolor)

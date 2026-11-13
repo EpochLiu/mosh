@@ -1,4 +1,7 @@
-[![ci](https://github.com/mobile-shell/mosh/actions/workflows/ci.yml/badge.svg)](https://github.com/mobile-shell/mosh/actions/workflows/ci.yml)
+[![ci](https://github.com/EpochLiu/mosh/actions/workflows/ci.yml/badge.svg?branch=rove)](https://github.com/EpochLiu/mosh/actions/workflows/ci.yml)
+
+Rove fork: preserves faint/dim text (SGR 2). See [ROVE.md](ROVE.md) for
+patch provenance, tests, and installation on both client and server.
 
 Mosh: the mobile shell
 ======================
