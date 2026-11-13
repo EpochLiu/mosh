@@ -29,6 +29,18 @@ new connection to use the patched pair. Do not terminate tmux or the agent.
 Do not assume a binary built on Arch Linux works on Ubuntu: build on each
 target or produce a separately validated portable build.
 
+Prefer building Ubuntu binaries on a server with spare CPU, inside an
+isolated Ubuntu 24.04 container, rather than on a constrained Rove gateway.
+The container needs these dependencies (including `less`, which the window
+resize regression invokes):
+
+```sh
+apt-get update
+apt-get install -y --no-install-recommends build-essential autoconf automake \
+  pkg-config protobuf-compiler libprotobuf-dev libncurses-dev libssl-dev \
+  zlib1g-dev libutempter-dev tmux less git ca-certificates python3
+```
+
 Coverage includes the upstream tmux true-color display comparison, a default
 foreground faint/reset display comparison (`emulation-attributes-faint.test`), and a
 dedicated `rendition-faint` regression for SGR 2 emission, screen inequality,
